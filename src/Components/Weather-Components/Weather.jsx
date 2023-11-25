@@ -19,7 +19,7 @@ export const Weather = () => {
   const apiKey = "6a5a83ce812679ef285caed34b5e91f9";
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${search}&units=metric&appid=${apiKey}`;
 
-  let AllWeatherData = {};
+  let AllWeatherData = {} ; // empty object
 
   const weatherData = async () => {
     const response = await fetch(url);
@@ -80,7 +80,7 @@ export const Weather = () => {
         setIcon(cloud_icon);
     }
     if(AllWeatherData.weatherIcon === "03d" || AllWeatherData.weatherIcon === "03n"){
-        setIcon(humidity_icon);
+        setIcon(cloud_icon);
     }
     if(AllWeatherData.weatherIcon === "04d" || AllWeatherData.weatherIcon === "04n"){
         setIcon(drizzle_icon);
