@@ -221,7 +221,7 @@ export const Weather = (props) => {
     <div className="container p-3 m-3" style={{ width: "80%" }}>
       <div className="d-flex" id="search-params">
         <input
-          type="search"
+          type="text"
           placeholder="Search your city name here..."
           aria-label="Search"
           id="input-search"
