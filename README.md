@@ -1,8 +1,8 @@
-#Technologies used to build this -
+# Technologies used to build this -
 
-###react , bootstrap , css , react-top-loading-bar , lucide icons , vercel , git , github , js
+### react , bootstrap , css , react-top-loading-bar , lucide icons , vercel , git , github , js , npm
 
-#live preview of the app
+# live preview of the app
 
 https://react-weather-app-psi-six.vercel.app/
 
