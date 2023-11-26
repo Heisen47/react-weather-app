@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { Weather } from "./Weather";
 import { Github } from 'lucide-react';
 
-export const Navbar = () => {
+export const Navbar = (props) => {
+    const setProgress = props.setProgress;
   const [unit, setUnit] = useState("metric");
 
   const handleToggle = () => {
@@ -45,7 +46,7 @@ export const Navbar = () => {
         </div>
       </nav>
       <div className="Weather-details">
-        <Weather unit={unit}/>
+        <Weather unit={unit} setProgress={setProgress}/>
       </div>
     </div>
   );

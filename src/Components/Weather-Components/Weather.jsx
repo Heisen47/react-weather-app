@@ -29,8 +29,10 @@ export const Weather = (props) => {
   );
 
   const weatherData = async () => {
+    props.setProgress(40);
     const response = await fetch(url);
     const finalData = await response.json();
+    props.setProgress(100);
 
     //getting weather icon
     const weatherIcon = finalData.weather[0].icon;
