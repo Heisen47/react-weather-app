@@ -214,7 +214,8 @@ export const Weather = (props) => {
   };
 
   return (
-    <div className="container border border-primary p-3 m-3">
+    <div className="container  p-3 m-3"
+    style={{width:'80%'}}>
       <div className="d-flex" id="search-params">
         <input
           type="search"
