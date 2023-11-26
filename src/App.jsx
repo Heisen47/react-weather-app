@@ -1,11 +1,14 @@
 import './App.css';
 import { Navbar } from './Components/Weather-Components/Navbar';
 
+
 function App() {
   return (
-    <div className="App">
-      <Navbar/>
-    </div>
+    <>
+      <div className="App">
+        <Navbar />
+      </div>
+    </>
   );
 }
 

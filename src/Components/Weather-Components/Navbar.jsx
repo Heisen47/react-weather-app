@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Weather } from "./Weather";
+import { Github } from 'lucide-react';
 
 export const Navbar = () => {
   const [unit, setUnit] = useState("metric");
@@ -32,6 +33,13 @@ export const Navbar = () => {
               >
                 {unit.charAt(0).toUpperCase()+unit.slice(1)}
               </label>
+
+              <span className="github m-3">
+                Made with ❤️ by Heisen
+                <a className='m-3' href="https://github.com/Heisen47/react-weather-app" rel="noreferrer" target="_blank">
+                <Github />
+                </a>
+              </span>
             </div>
           </div>
         </div>
