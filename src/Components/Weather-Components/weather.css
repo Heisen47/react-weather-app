@@ -45,6 +45,10 @@ body {
     max-height: 600px;
 }
 
+#submit-btn{
+    margin-left: 12px;
+    padding: 10px;
+}
 
 
 #temp {
