@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./weather.css";
 import { Search } from "lucide-react";
 import clear_icon from "../Assets/clear.png";
@@ -15,11 +15,16 @@ import sunset_icon from "../Assets/sunset.png";
 export const Weather = (props) => {
   const [search, setSearch] = useState("");
   const [Icon, setIcon] = useState();
+  const[unitSys , setUnitSys]=useState("")
 
   const apiKey = "6a5a83ce812679ef285caed34b5e91f9";
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${search}&units=${props.unit}&appid=${apiKey}`;
 
   let AllWeatherData = {} ; // empty object
+
+  //used the useEffect hook as i needed a callback function when the component is mounted , without the hook , i was going into a infinite loop of renders
+  
+  useEffect(()=>setUnitSys(props.unit === "metric" ? "°C" : "°F"),[props.unit]);
 
 
   const weatherData = async () => {
@@ -107,11 +112,11 @@ export const Weather = (props) => {
     
     //rendering temp
     const temp = document.getElementById('temp');
-    temp.innerHTML = Math.floor(AllWeatherData.currTemp) + '°C in ' + search +', '+ AllWeatherData.skyDetails;
+    temp.innerHTML = Math.floor(AllWeatherData.currTemp) + `${unitSys} in ` + search +', '+ AllWeatherData.skyDetails;
 
     //rendering feels like
     const feelsLike = document.getElementById('feels-like');
-    feelsLike.innerHTML = 'Feels like ' + Math.floor(AllWeatherData.feelsLikeData) + '°C' 
+    feelsLike.innerHTML = 'Feels like ' + Math.floor(AllWeatherData.feelsLikeData) + `${unitSys}` 
 
     //rendering visibility
     const visib = document.getElementById('visibility');

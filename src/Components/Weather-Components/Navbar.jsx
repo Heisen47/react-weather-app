@@ -30,7 +30,7 @@ export const Navbar = () => {
                 className="form-check-label m-"
                 htmlFor="flexSwitchCheckDefault"
               >
-                {unit}
+                {unit.charAt(0).toUpperCase()+unit.slice(1)}
               </label>
             </div>
           </div>
