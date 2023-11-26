@@ -1,3 +1,11 @@
+# Technologies used to build this -
+
+### react , bootstrap , css , react-top-loading-bar , lucide icons , vercel , git , github , js , npm
+
+# live preview of the app
+
+https://react-weather-app-psi-six.vercel.app/
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
