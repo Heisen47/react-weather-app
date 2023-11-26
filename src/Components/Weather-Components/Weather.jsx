@@ -28,16 +28,13 @@ export const Weather = (props) => {
     [props.unit]
   );
 
-  const checkInputField =()=>{
+  const checkInputField = () => {
     // console.log('hi');
-    const inputFieldVal = document.getElementById('input-search')
-    if(inputFieldVal.value === ""){
-        alert('Please enter a valid location');
-    }
-    else(
-        weatherData()
-    )
-  }
+    const inputFieldVal = document.getElementById("input-search");
+    if (inputFieldVal.value === "") {
+      alert("Please enter a valid location");
+    } else weatherData();
+  };
 
   const weatherData = async () => {
     props.setProgress(40);
@@ -45,62 +42,66 @@ export const Weather = (props) => {
     const finalData = await response.json();
     props.setProgress(100);
 
-    //getting weather icon
-    const weatherIcon = finalData.weather[0].icon;
-    AllWeatherData.weatherIcon = weatherIcon;
-    // console.log(AllWeatherData.weatherIcon);
+    if (finalData.message === "city not found") {
+      alert("please enter a valid city name");
+    } else {
+      //getting weather icon
+      const weatherIcon = finalData.weather[0].icon;
+      AllWeatherData.weatherIcon = weatherIcon;
+      // console.log(AllWeatherData.weatherIcon);
 
-    //getting temperature from api
-    const currTemp = finalData.main.temp;
-    AllWeatherData.currTemp = currTemp;
+      //getting temperature from api
+      const currTemp = finalData.main.temp;
+      AllWeatherData.currTemp = currTemp;
 
-    //getting feels like from api
-    const feelsLikeTemp = finalData.main.feels_like;
-    AllWeatherData.feelsLikeData = feelsLikeTemp;
+      //getting feels like from api
+      const feelsLikeTemp = finalData.main.feels_like;
+      AllWeatherData.feelsLikeData = feelsLikeTemp;
 
-    //getting Visibility from api
-    const visibility = finalData.visibility;
-    AllWeatherData.visibility = visibility + " meters";
+      //getting Visibility from api
+      const visibility = finalData.visibility;
+      AllWeatherData.visibility = visibility + " meters";
 
-    //getting Sky details from api
-    const skyDetails = finalData.weather[0].description;
-    AllWeatherData.skyDetails = skyDetails;
+      //getting Sky details from api
+      const skyDetails = finalData.weather[0].description;
+      AllWeatherData.skyDetails = skyDetails;
 
-    //getting windSpeed from api
-    const windSpeed = finalData.wind.speed;
-    AllWeatherData.windSpeed = windSpeed + " km/hr ";
+      //getting windSpeed from api
+      const windSpeed = finalData.wind.speed;
+      AllWeatherData.windSpeed = windSpeed + " km/hr ";
 
-    //getting max Temp from api
-    const tempMax = finalData.main.temp_max;
-    AllWeatherData.tempMax = tempMax;
+      //getting max Temp from api
+      const tempMax = finalData.main.temp_max;
+      AllWeatherData.tempMax = tempMax;
 
-    //getting min temp from api
-    const tempMin = finalData.main.temp_min;
-    AllWeatherData.tempMin = tempMin;
+      //getting min temp from api
+      const tempMin = finalData.main.temp_min;
+      AllWeatherData.tempMin = tempMin;
 
-    //getting sunRise from api
-    const sunRise = finalData.sys.sunrise;
-    const newSunRise = new Date(sunRise * 1000);
+      //getting sunRise from api
+      const sunRise = finalData.sys.sunrise;
+      const newSunRise = new Date(sunRise * 1000);
 
-    const SunRiseHours = newSunRise.getUTCHours();
-    const SunRiseMinutes = newSunRise.getUTCMinutes();
-    const SunRiseSeconds = newSunRise.getUTCSeconds();
+      const SunRiseHours = newSunRise.getUTCHours();
+      const SunRiseMinutes = newSunRise.getUTCMinutes();
+      const SunRiseSeconds = newSunRise.getUTCSeconds();
 
-    const formattedUpTime = `${SunRiseHours}:${SunRiseMinutes}:${SunRiseSeconds} UTC `;
+      const formattedUpTime = `${SunRiseHours}:${SunRiseMinutes}:${SunRiseSeconds} UTC `;
 
-    AllWeatherData.sunRise = formattedUpTime;
+      AllWeatherData.sunRise = formattedUpTime;
 
-    //getting sunSet from api
-    const sunSet = finalData.sys.sunset;
-    const newSunSet = new Date(sunSet * 1000);
+      //getting sunSet from api
+      const sunSet = finalData.sys.sunset;
+      const newSunSet = new Date(sunSet * 1000);
 
-    const SunSetHours = newSunSet.getUTCHours();
-    const SunSetMinutes = newSunSet.getUTCMinutes();
-    const SunSetSeconds = newSunSet.getUTCSeconds();
+      const SunSetHours = newSunSet.getUTCHours();
+      const SunSetMinutes = newSunSet.getUTCMinutes();
+      const SunSetSeconds = newSunSet.getUTCSeconds();
 
-    const formattedDownTime = `${SunSetHours}:${SunSetMinutes}:${SunSetSeconds} UTC `;
+      const formattedDownTime = `${SunSetHours}:${SunSetMinutes}:${SunSetSeconds} UTC `;
 
-    AllWeatherData.sunset = formattedDownTime;
+      AllWeatherData.sunset = formattedDownTime;
+    }
 
     //rendering the weather icon
     if (
@@ -163,7 +164,8 @@ export const Weather = (props) => {
     temp.innerHTML =
       Math.floor(AllWeatherData.currTemp) +
       `${unitSys} in ` +
-      search.charAt(0).toUpperCase()+search.slice(1) +
+      search.charAt(0).toUpperCase() +
+      search.slice(1) +
       ", " +
       AllWeatherData.skyDetails;
 
@@ -239,7 +241,6 @@ export const Weather = (props) => {
 
         <div className="grid mt-3 p-3">
           <div className="text-center">
-
             <div className="row">
               <div className="col" id="visibility"></div>
               <div className="col" id="windSpeed"></div>
