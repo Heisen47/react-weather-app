@@ -36,6 +36,10 @@ export const Weather = (props) => {
     } else weatherData();
   };
 
+  const cancelTrans = ()=>{
+    setSearch("");
+  }
+
   const weatherData = async () => {
     props.setProgress(40);
     const response = await fetch(url);
@@ -214,8 +218,7 @@ export const Weather = (props) => {
   };
 
   return (
-    <div className="container p-3 m-3"
-    style={{width:'80%'}}>
+    <div className="container p-3 m-3" style={{ width: "80%" }}>
       <div className="d-flex" id="search-params">
         <input
           type="search"
@@ -232,6 +235,14 @@ export const Weather = (props) => {
           onClick={checkInputField}
         >
           <Search />
+        </button>
+        <button
+          className="btn btn-outline-primary"
+          type="submit"
+          id="submit-btn"
+          onClick={cancelTrans}
+        >
+          &#10060;
         </button>
       </div>
       <br />
