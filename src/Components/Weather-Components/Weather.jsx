@@ -214,7 +214,7 @@ export const Weather = (props) => {
   };
 
   return (
-    <div className="container  p-3 m-3"
+    <div className="container p-3 m-3"
     style={{width:'80%'}}>
       <div className="d-flex" id="search-params">
         <input
@@ -235,7 +235,7 @@ export const Weather = (props) => {
         </button>
       </div>
       <br />
-      <div className="container-body">
+      <div className="container-body" id="container-body">
         <img src={Icon} alt="" id="Display-icon" />
         <div id="temp"> </div>
         <div id="feels-like"> </div>
