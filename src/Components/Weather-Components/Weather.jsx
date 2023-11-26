@@ -28,6 +28,17 @@ export const Weather = (props) => {
     [props.unit]
   );
 
+  const checkInputField =()=>{
+    // console.log('hi');
+    const inputFieldVal = document.getElementById('input-search')
+    if(inputFieldVal.value === ""){
+        alert('Please enter a valid location');
+    }
+    else(
+        weatherData()
+    )
+  }
+
   const weatherData = async () => {
     props.setProgress(40);
     const response = await fetch(url);
@@ -215,7 +226,7 @@ export const Weather = (props) => {
           className="btn btn-outline-primary"
           type="submit"
           id="submit-btn"
-          onClick={weatherData}
+          onClick={checkInputField}
         >
           <Search />
         </button>
