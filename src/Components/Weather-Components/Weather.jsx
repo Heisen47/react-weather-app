@@ -12,20 +12,19 @@ import sunrise_icon from "../Assets/sunrise.png";
 import sunset_icon from "../Assets/sunset.png";
 
 
-export const Weather = () => {
+export const Weather = (props) => {
   const [search, setSearch] = useState("");
-  const [Icon, setIcon] = useState()
+  const [Icon, setIcon] = useState();
 
   const apiKey = "6a5a83ce812679ef285caed34b5e91f9";
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${search}&units=metric&appid=${apiKey}`;
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${search}&units=${props.unit}&appid=${apiKey}`;
 
   let AllWeatherData = {} ; // empty object
+
 
   const weatherData = async () => {
     const response = await fetch(url);
     const finalData = await response.json();
-
-    // console.log(finalData);
 
     //getting weather icon
     const weatherIcon = finalData.weather[0].icon
@@ -43,6 +42,10 @@ export const Weather = () => {
     //getting Visibility from api
     const visibility = finalData.visibility;
     AllWeatherData.visibility = visibility + ' meters';
+
+    //getting Sky details from api
+    const skyDetails = finalData.weather[0].description;
+    AllWeatherData.skyDetails = skyDetails;
 
     //getting windSpeed from api
     const windSpeed = finalData.wind.speed;
@@ -104,7 +107,7 @@ export const Weather = () => {
     
     //rendering temp
     const temp = document.getElementById('temp');
-    temp.innerHTML = Math.floor(AllWeatherData.currTemp) + '°C in ' + search;
+    temp.innerHTML = Math.floor(AllWeatherData.currTemp) + '°C in ' + search +', '+ AllWeatherData.skyDetails;
 
     //rendering feels like
     const feelsLike = document.getElementById('feels-like');
